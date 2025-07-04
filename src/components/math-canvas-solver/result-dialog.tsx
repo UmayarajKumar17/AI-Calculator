@@ -26,7 +26,7 @@ export default function ResultDialog({ result, onOpenChange }: ResultDialogProps
             Solution Found!
           </AlertDialogTitle>
           <AlertDialogDescription className="text-muted-foreground text-base pt-2">
-            The result of your expression is:
+            The result of your question is:
             <div className="text-6xl font-bold font-headline text-foreground mt-4 bg-accent/20 p-6 rounded-lg">
               {result}
             </div>

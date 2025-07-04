@@ -156,7 +156,7 @@ const MathCanvas = forwardRef<MathCanvasHandle, MathCanvasProps>(
             const tempCtx = tempCanvas.getContext('2d');
             if (tempCtx) {
                 // Use the page's background color for the canvas background
-                tempCtx.fillStyle = '#F0F0F0';
+                tempCtx.fillStyle = '#1a1b1e';
                 tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
                 tempCtx.drawImage(canvas, 0, 0);
                 return tempCanvas.toDataURL('image/png');

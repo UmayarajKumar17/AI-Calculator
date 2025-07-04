@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { Loader2, Eraser, PenLine } from "lucide-react";
 
-import { solveMathExpression } from "@/ai/flows/solve-math-expression";
+import { solveQuestion } from "@/ai/flows/solve-math-expression";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import ColorPalette from "@/components/math-canvas-solver/color-palette";
@@ -13,13 +13,13 @@ import { Toaster } from "@/components/ui/toaster";
 
 
 export default function MathCanvasSolverPage() {
-  const [selectedColor, setSelectedColor] = useState<string>("#000000");
+  const [selectedColor, setSelectedColor] = useState<string>("#FFFFFF");
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const canvasRef = useRef<MathCanvasHandle>(null);
   const { toast } = useToast();
 
-  const colors = ['#000000', '#EF4444', '#3B82F6', '#22C55E', '#A855F7'];
+  const colors = ['#FFFFFF', '#FFD700', '#00FFFF', '#FF00FF', '#39FF14'];
 
   const handleRun = async () => {
     if (!canvasRef.current) return;
@@ -29,21 +29,21 @@ export default function MathCanvasSolverPage() {
       toast({
         variant: "destructive",
         title: "Canvas is empty",
-        description: "Please draw a math expression before running.",
+        description: "Please draw a question before running.",
       });
       return;
     }
 
     setIsLoading(true);
     try {
-      const response = await solveMathExpression({ photoDataUri });
+      const response = await solveQuestion({ photoDataUri });
       setResult(response.result);
     } catch (error) {
       console.error(error);
       toast({
         variant: "destructive",
         title: "An error occurred",
-        description: "Could not solve the expression. Please try again.",
+        description: "Could not solve the question. Please try again.",
       });
     } finally {
       setIsLoading(false);
