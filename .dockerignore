@@ -1,0 +1,3 @@
+# Only ignore these to prevent issues
+.git
+node_modules

@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  ai-calculator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-calculator
+    ports:
+      - "9002:9002"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - ai-calculator-network
+
+networks:
+  ai-calculator-network:
+    driver: bridge
